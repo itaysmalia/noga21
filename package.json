@@ -1,0 +1,16 @@
+{
+  "name": "noga21.github.io",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "upload": "gh-pages -d src"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "gh-pages": "^4.0.0",
+    "serve": "^14.1.2"
+  }
+}
