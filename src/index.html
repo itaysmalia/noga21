@@ -1,12 +1,215 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/timeline.min.css">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nogas 21 Birthday</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Heebo&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            overflow-y: scroll;
+            font-family: 'Heebo', sans-serif;
+
+        }
+
+
+        body,
+        html {
+            width: 100%;
+            height: 100%;
+        }
+
+        #ts {
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            position: relative;
+        }
+
+
+        #header {
+            color: white;
+            position: relative;
+            text-align: center;
+            z-index: 1;
+            padding: 2rem;
+        }
+
+        #images {
+            overflow-y: visible;
+            width: 100%;
+            height: 100%;
+            transition: all 2s;
+            position: absolute;
+        }
+
+        #images div {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 50%;
+            padding: 1rem;
+        }
+
+        #images div img {
+            filter: brightness(30%);
+            max-width: 100%;
+            max-height: 100%;
+            border-radius: 34px;
+            background: #ffffff;
+            box-shadow: 5px 5px 10px #d9d9d9,
+                -5px -5px 10px #ffffff;
+        }
+
+        .timeline-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            height: 70%;
+            padding: 1rem;
+        }
+
+        .timeline__content {
+            background-color: #ffffff40 !important;
+            padding: 0.5rem 1rem;
+        }
+
+
+        .event-time {
+            width: 100%;
+            text-align: right;
+            font-weight: bold;
+        }
+
+        .event-content {
+            text-align: center;
+            font-weight: bold;
+            font-size: large;
+            direction: rtl;
+        }
+    </style>
 </head>
+
 <body>
-    
+    <h1 id="header">❤ מזל טוב נגה</h1>
+    <div id="images">
+        <div><img src="images/img1.jpeg" /></div>
+        <div><img src="images/img2.jpeg" /></div>
+        <div><img src="images/img3.jpeg" /></div>
+        <div><img src="images/img4.jpeg" /></div>
+        <div><img src="images/img5.jpeg" /></div>
+        <div><img src="images/img6.jpeg" /></div>
+    </div>
+    <div class="timeline-container">
+        <div class="timeline">
+            <div class="timeline__wrap">
+                <div class="timeline__items">
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles-engine@2.7.1/tsparticles.engine.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.11.7/dayjs.min.js"
+        integrity="sha512-hcV6DX35BKgiTiWYrJgPbu3FxS6CsCjKgmrsPRpUPkXWbvPiKxvSVSdhWX0yXcPctOI2FJ4WP6N1zH+17B/sAA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/party-js@latest/bundle/party.min.js"></script>
+    <script src="js/timeline.min.js"></script>
+    <script>
+        const day = 6;
+        const genDate = (h, m, s = 0) => new Date(2023, 0, 6, h, m, s)
+        const events = [
+            {
+                content: "בוקר יום הולדת🎉🎊",
+                date: genDate(13, 44, 0)
+            },
+            {
+                content: "מכינים פנקייקים 🥞",
+                date: genDate(13, 44, 0)
+            },
+            {
+                content: "יוצאים לפיקניק ⛺",
+                date: genDate(13, 44, 10)
+            },
+            {
+                content: "רוכבים על סוסים 🐴🐎",
+                date: genDate(13, 44, 20)
+            },
+            {
+                content: "מתנה בשקיעה 🌅",
+                date: genDate(13, 44, 30)
+            },
+            {
+                content: "סרט VIP 🎬",
+                date: genDate(13, 44, 40)
+            },
+            {
+                content: "עוד מתנות 🎁🎉",
+                date: genDate(13, 44, 40)
+            },
+        ]
+        function initTimeline() {
+
+            const timelineElm = document.querySelector('.timeline')
+            const items = timelineElm.querySelector(".timeline__items")
+            events.map(event => {
+                const item = document.createElement("div")
+                item.classList.add("timeline__item")
+                const itemContent = document.createElement("div")
+                itemContent.classList.add("timeline__content")
+                const eventTime = document.createElement("div")
+                eventTime.classList.add("event-time")
+                eventTime.textContent = event.date.toLocaleTimeString()
+                itemContent.appendChild(eventTime)
+                const eventContent = document.createElement("div")
+                eventContent.classList.add('event-content')
+                eventContent.textContent = event.content
+                if (dayjs().isAfter(event.date)) {
+                    itemContent.appendChild(eventContent)
+                }
+                item.appendChild(itemContent)
+                items.appendChild(item);
+            })
+        }
+        function init() {
+            let i = 0;
+            const images = document.getElementById('images')
+            const numberOfImages = images.children.length
+            images.style.top = "0vh";
+            setInterval(() => {
+                i = (i + 1) % numberOfImages;
+                images.style.top = `-${((i % numberOfImages - 1) * 5).toFixed(0)}0vh`;
+            }, 3 * 1000)
+
+            initTimeline()
+            timeline(document.querySelectorAll('.timeline'), {
+                verticalStartPosition: 'left',
+            });
+        }
+        init()
+        const header = document.getElementById("header")
+        function confetti() {
+            party.confetti(header, {
+                count: party.variation.range(800, 1000),
+            });
+
+        }
+        confetti()
+        header.addEventListener("click", confetti)
+    </script>
 </body>
+
 </html>
