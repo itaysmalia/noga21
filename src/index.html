@@ -144,35 +144,39 @@
     <script src="js/timeline.min.js"></script>
     <script>
         const day = 6;
-        const genDate = (h, m, s = 0) => new Date(2023, 0, 6, h, m, s)
+        const genDate = (h, m, s = 0) => new Date(2023, 0, 10, h, m, s)
         const events = [
             {
                 content: "בוקר יום הולדת🎉🎊",
-                date: genDate(13, 44, 0)
+                date: genDate(8, 0, 0)
             },
             {
-                content: "מכינים פנקייקים 🥞",
-                date: genDate(13, 44, 0)
+                content: "עוגה עם רנטה ורוני 🎂",
+                date: genDate(9, 0, 0)
+            },
+            {
+                content: "מכינים מקסיקני ופנקייקים 🥞🌮",
+                date: genDate(10, 30, 0)
             },
             {
                 content: "יוצאים לפיקניק ⛺",
-                date: genDate(13, 44, 10)
+                date: genDate(12, 0, 0)
             },
             {
                 content: "רוכבים על סוסים 🐴🐎",
-                date: genDate(13, 44, 20)
+                date: genDate(13, 30, 0)
             },
             {
                 content: "מתנה בשקיעה 🌅",
-                date: genDate(13, 44, 30)
+                date: genDate(16, 0, 0)
             },
             {
                 content: "סרט VIP 🎬",
-                date: genDate(13, 44, 40)
+                date: genDate(16, 45, 0)
             },
             {
                 content: "עוד מתנות 🎁🎉",
-                date: genDate(13, 44, 40)
+                date: genDate(21, 15, 0)
             },
         ]
         function initTimeline() {
